@@ -1,22 +1,27 @@
 ## Basics
-Fundamentals of Networking
-Fundamentals of Backend
-Fundamentals of DB 
+- [ ] Fundamentals of Networking
+- [ ] Fundamentals of Backend
+- [ ] Fundamentals of DB 
 
 ## Lang.
-Go & Fiber
+- [ ] Go
+- [ ] Fiber
 
 ## DB
-Postgres
-Redis
+- [ ] Postgres
+- [ ] Redis
 
 ## Message broker
-MQTT/Kafka
-Cadence
+- [ ] MQTT
+- [ ] Kafka
+
+## Workflow 
+- [ ] Cadence (https://github.com/uber/cadence)
 
 ## Transport
-Protobuf
-Performance
+- [ ] Protobuf
+- [ ] Performance
 
 ## UI
-Htmx+Templ
+- [ ] Htmx
+- [ ] Templ
