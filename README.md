@@ -5,6 +5,15 @@
 
 ## Lang.
 - [ ] Go
+
+### Concurrency
+  - [ ] Context
+  - [ ] Goroutines
+  - [ ] Channels
+  - [ ] Waitgroups
+  - [ ] Mutex
+
+### Framework
 - [ ] Fiber
 
 ## DB
