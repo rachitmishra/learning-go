@@ -34,3 +34,6 @@
 ## UI
 - [ ] Htmx
 - [ ] Templ
+
+## Helpful cmds
+go test -bench=. -cpu=1 concurrency/benchmark-context-switch.go
