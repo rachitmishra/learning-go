@@ -1,0 +1,73 @@
+package home
+
+import "rachitmishra.com/pastebin/src/web/shared/components"
+
+templ Home(hm HomeVM) {
+	@shared.Page("Home", Content(hm))
+}
+
+templ Content(hm HomeVM) {
+	<form hx-post="/pastes/new" hx-swap="innerHTML">
+		if hm.CheckField("title") {
+			<input
+				type="text"
+				placeholder="Title"
+				name="title"
+				aria-invalid="true"
+				aria-describedby="invalid-title"
+			/>
+			<small for="invalid-title">{ hm.GetField("title") }</small>
+		} else {
+			<input
+				type="text"
+				placeholder="Title"
+				name="title"
+			/>
+		}
+		if hm.CheckField("content") {
+			<textarea
+				name="content"
+				rows="10"
+				cols="50"
+				placeholder="Content"
+				aria-invalid="true"
+				aria-describedby="invalid-content"
+			></textarea>
+			<small for="invalid-content">{ hm.GetField("content") }</small>
+		} else {
+			<textarea
+				name="content"
+				rows="10"
+				cols="50"
+				placeholder="Content"
+			></textarea>
+		}
+		if hm.CheckField("expires") {
+			<label for="expires">Expiration:</label>
+			<select
+				name="expires"
+				aria-invalid="true"
+				aria-describedby="invalid-title"
+			>
+				<option value="3650">Never</option>
+				<option value="0.24">1 Hour</option>
+				<option value="1">1 Day</option>
+				<option value="7">1 Week</option>
+				<option value="365">1 Year</option>
+			</select>
+			<small for="invalid-expires">{ hm.GetField("expires") }</small>
+		} else {
+			<label for="expires">Expiration:</label>
+			<select
+				name="expires"
+			>
+				<option value="3650">Never</option>
+				<option value="24">1 Hour</option>
+				<option value="1">1 Day</option>
+				<option value="7">1 Week</option>
+				<option value="365">1 Year</option>
+			</select>
+		}
+		<input type="submit" value="Submit"/>
+	</form>
+}
