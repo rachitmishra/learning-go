@@ -6,8 +6,8 @@ import (
 	"unicode/utf8"
 
 	"github.com/julienschmidt/httprouter"
-	"rachitmishra.com/pastebin/src/web/shared"
-	components "rachitmishra.com/pastebin/src/web/shared/components"
+	"rachitmishra.com/pastebin/cmd/web/shared"
+	components "rachitmishra.com/pastebin/cmd/web/shared/components"
 )
 
 func Handler(deps shared.ServiceDeps) http.HandlerFunc {

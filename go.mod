@@ -6,6 +6,7 @@ require github.com/mmcdole/gofeed v1.3.0
 
 require (
 	github.com/PuerkitoBio/goquery v1.10.0 // indirect
+	github.com/alexedwards/scs/v2 v2.8.0 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
 	github.com/go-playground/form/v4 v4.2.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

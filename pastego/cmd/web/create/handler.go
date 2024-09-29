@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"rachitmishra.com/pastebin/src/web/home"
-	"rachitmishra.com/pastebin/src/web/shared"
+	"rachitmishra.com/pastebin/cmd/web/home"
+	"rachitmishra.com/pastebin/cmd/web/shared"
 )
 
 func Handler(a shared.ServiceDeps) http.HandlerFunc {
