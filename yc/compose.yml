@@ -1,0 +1,29 @@
+services:
+  golang:
+    container_name: golang
+    image: golang:latest
+    build: api/
+    environment:
+      DATABASE_URL: "host=postgres user=postgres password=postgres dbname=postgres sslmode=disable"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    build:
+      context: ./docker/redis
+    volumes:
+      - ./storage/docker/logs/redis:/var/log/redis
+volumes:
+  pgdata: {}
