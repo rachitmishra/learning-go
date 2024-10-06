@@ -15,11 +15,11 @@ import (
 	"github.com/jackc/pgx/v5"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	h "rachitmishra.com/yc/cmd/handler"
+	pb "rachitmishra.com/yc/generated/data/proto/todo"
+	d "rachitmishra.com/yc/generated/data/sql"
 	gg "rachitmishra.com/yc/generated/graph"
-	pb "rachitmishra.com/yc/generated/proto/todo"
-	d "rachitmishra.com/yc/generated/sql"
-	g "rachitmishra.com/yc/graph"
+	g "rachitmishra.com/yc/handlers/graph"
+	t "rachitmishra.com/yc/handlers/todo"
 )
 
 const _defaultPort = "8080"
@@ -30,7 +30,7 @@ func runGrpcServer() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterTodoServer(s, &h.Handler{})
+	pb.RegisterTodoServer(s, &t.Handler{})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

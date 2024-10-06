@@ -1,9 +1,9 @@
-package server
+package todo
 
 import (
 	"context"
 
-	pb "rachitmishra.com/yc/generated/proto/todo"
+	pb "rachitmishra.com/yc/generated/data/proto/todo"
 )
 
 type Handler struct {

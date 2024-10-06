@@ -10,12 +10,12 @@ GQLGEN_CMD = go run github.com/99designs/gqlgen generate
 
 .PHONY: protogen
 protogen: 
-	mkdir -p generated/proto
-	protoc -I ./proto \
-   --go_out ./generated/proto --go_opt paths=source_relative \
-   --go-grpc_out ./generated/proto --go-grpc_opt paths=source_relative \
-   --grpc-gateway_out ./generated/proto --grpc-gateway_opt paths=source_relative \
-   ./proto/todo/*.proto
+	mkdir -p generated/data/proto
+	protoc -I ./data/proto \
+   --go_out ./generated/data/proto --go_opt paths=source_relative \
+   --go-grpc_out ./generated/data/proto --go-grpc_opt paths=source_relative \
+   --grpc-gateway_out ./generated/data/proto --grpc-gateway_opt paths=source_relative \
+   ./data/proto/todo/*.proto
 
 .PHONY: gqlgen
 gqlgen:
@@ -29,3 +29,7 @@ sqlgen:
 run:
 	gow run ${main_package_path}
 
+
+.PHONY: tidy
+tidy:
+	go mod tidy
