@@ -1,4 +1,4 @@
-package coffeeshop
+package handlers
 
 import (
 	"fmt"

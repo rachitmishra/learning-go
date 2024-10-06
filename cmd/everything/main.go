@@ -1,7 +1,7 @@
 package main
 
 import (
-	"rachitmishra.com/learning-go/types"
+	"rachitmishra.com/go/cmd/everything/types"
 )
 
 func main() {

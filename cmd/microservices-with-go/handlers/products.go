@@ -8,7 +8,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"rachitmishra.com/learning-go/microservices-with-go/data"
+	"rachitmishra.com/go/cmd/microservices-with-go/data"
 )
 
 type Products struct {

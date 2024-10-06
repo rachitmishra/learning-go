@@ -1,4 +1,4 @@
-package coffeeshop
+package data
 
 type OrderState int
 
