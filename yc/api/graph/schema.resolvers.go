@@ -17,16 +17,16 @@ import (
 func (r *mutationResolver) CreateLink(ctx context.Context, input graph.NewLink) (*graph.Link, error) {
 	user := auth.ForContext(ctx)
 	if user == nil {
-		return &model.Link{}, fmt.Errorf("access denied")
+		return &graph.Link{}, fmt.Errorf("access denied")
 	}
 	// 2
 	link.User = user
 	linkID := link.Save()
-	graphqlUser := &model.User{
+	graphqlUser := &graph.User{
 		ID:   user.ID,
 		Name: user.Username,
 	}
-	return &model.Link{ID: strconv.FormatInt(linkID, 10), Title: link.Title, Address: link.Address, User: graphqlUser}, nil
+	return &graph.Link{ID: strconv.FormatInt(linkID, 10), Title: link.Title, Address: link.Address, User: graphqlUser}, nil
 }
 
 // CreateUser is the resolver for the createUser field.
@@ -74,15 +74,15 @@ func (r *mutationResolver) RefreshToken(ctx context.Context, input graph.Refresh
 
 // Links is the resolver for the links field.
 func (r *queryResolver) Links(ctx context.Context) ([]*graph.Link, error) {
-	var resultLinks []*model.Link
+	var resultLinks []*graph.Link
 	var dbLinks []links.Link
 	dbLinks = links.GetAll()
 	for _, link := range dbLinks {
-		graphqlUser := &model.User{
+		graphqlUser := &link.User{
 			ID:   link.User.ID,
 			Name: link.User.Username,
 		}
-		resultLinks = append(resultLinks, &model.Link{ID: link.ID, Title: link.Title, Address: link.Address, User: graphqlUser})
+		resultLinks = append(resultLinks, &link.Link{ID: link.ID, Title: link.Title, Address: link.Address, User: graphqlUser})
 	}
 	return resultLinks, nil
 }
