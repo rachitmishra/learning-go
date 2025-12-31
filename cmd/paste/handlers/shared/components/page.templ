@@ -1,0 +1,16 @@
+package shared
+
+templ Page(title string, body templ.Component) {
+<html>
+@Header(title)
+<body>
+<header>
+<h1>{"@pastego"}</h1>
+</header>
+<main>
+@body
+</main>
+@Footer()
+</body>
+</html>
+}

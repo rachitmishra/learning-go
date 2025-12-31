@@ -1,0 +1,52 @@
+package main
+
+import (
+	"net"
+	"time"
+	"sync"
+	"fmt"
+)
+
+func connectToService() interface{} {
+	time.Sleep(1 * time.Second)
+	return struct{}{}
+}
+
+func startNetworkDaemon() *sync.WaitGroup {
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		connPool := warmServiceConnCache()
+		server, err := net.Listen("tcp", "localhost:8080")
+		if err != nil {
+			fmt.Println("cannot listen: ", err)
+		}
+		defer server.Close()
+		wg.Done()
+
+		for {
+			conn, err := server.Accept()
+			if err != nil {
+				fmt.Println("cannot accept connection: ", err)
+				continue
+			}
+			svcConn := connPool.Get()
+			//connectToService()
+			fmt.Fprintln(conn, "")
+			connPool.Put(svcConn)
+			conn.Close()
+		}
+	}()
+	return &wg
+}
+
+func warmServiceConnCache() *sync.Pool {
+	p := &sync.Pool{
+		New: connectToService,
+	}
+	for i := 0; i < 10; i++ {
+		p.Put(p.New)
+	}
+	return p
+}
+

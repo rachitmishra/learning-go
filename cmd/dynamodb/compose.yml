@@ -1,0 +1,25 @@
+services:
+  todo-golang:
+    container_name: todo-golang
+    build: server
+    environment:
+      AWS_ACCESS_KEY_ID: "AWS_ACCESS_KEY_ID"
+      AWS_SECRET_ACCESS_KEY: "AWS_SECRET_ACCESS_KEY"
+      REGION: "us-east-1"
+    ports:
+      - "8001:8001"
+    depends_on:
+      - todo-dynamodb
+
+  todo-dynamodb:
+    image: "amazon/dynamodb-local:1.16.0"
+    container_name: todo-dynamodb
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    ports:
+      - "8002:8000"
+    environment:
+      DB_NAME: todo
+      DB_TABLE: todo
+    volumes:
+      - "./dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
